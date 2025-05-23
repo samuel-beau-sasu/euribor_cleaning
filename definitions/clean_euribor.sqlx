@@ -1,0 +1,41 @@
+-- This is an example SQLX file to help you learn the basics of Dataform.
+-- Visit https://cloud.google.com/dataform/docs/sql-workflows for more information on how to configure your SQL workflow.
+
+-- You can delete this file, then commit and push your changes to your repository when you are ready.
+
+-- Config blocks allow you to configure, document, and test your data assets.
+config {
+  type: "table", // Creates a view in BigQuery. Try changing to "table" instead.
+  columns: {
+    test: "A description for the test column", // Column descriptions are pushed to BigQuery.
+  }
+}
+
+-- The rest of a SQLX file contains your SELECT statement used to create the table.
+
+with euribor_ester_sans_doublons as (
+SELECT 
+    Date,
+    `1 jour`,
+    `1 semaine`,
+    `1 mois`,
+    `3 mois`,
+    `6 mois`,
+    `12 mois`,
+    bucket_name,
+    timestamp,
+    ROW_NUMBER() OVER(PARTITION BY Date ORDER BY timestamp DESC) as rn
+FROM `financial-data-storage.bq_data_finance_prod.euribor_ester_raw`
+order by Date desc
+)
+
+SELECT 
+    Date,
+    `1 jour`,
+    `1 semaine`,
+    `1 mois`,
+    `3 mois`,
+    `6 mois`,
+    `12 mois` 
+from euribor_ester_sans_doublons
+where rn = 1
