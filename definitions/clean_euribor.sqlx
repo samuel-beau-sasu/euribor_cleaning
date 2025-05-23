@@ -39,3 +39,4 @@ SELECT
     `12 mois` 
 from euribor_ester_sans_doublons
 where rn = 1
+order by Date
