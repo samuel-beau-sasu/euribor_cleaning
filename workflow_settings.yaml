@@ -1,5 +1,5 @@
 defaultProject: financial-data-storage
 defaultLocation: US
-defaultDataset: clean_data_preprod
+defaultDataset: clean_data_prod
 defaultAssertionDataset: dataform_assertions
 dataformCoreVersion: 3.0.0
