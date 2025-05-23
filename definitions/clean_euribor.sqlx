@@ -26,7 +26,7 @@ SELECT
     bucket_name,
     timestamp,
     ROW_NUMBER() OVER(PARTITION BY Date ORDER BY timestamp DESC) as rn
-FROM `financial-data-storage.bq_data_finance_preprod.euribor_ester_raw`
+FROM `financial-data-storage.bq_data_finance_prod.euribor_ester_raw`
 order by Date desc
 )
 
