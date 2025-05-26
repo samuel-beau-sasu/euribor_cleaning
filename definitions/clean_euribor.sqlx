@@ -27,6 +27,8 @@ SELECT
     timestamp,
     ROW_NUMBER() OVER(PARTITION BY Date ORDER BY timestamp DESC) as rn
 FROM `financial-data-storage.bq_data_finance_preprod.euribor_ester_raw`
+where `1 jour` is not null
+and `1 semaine` is not null
 order by Date desc
 )
 
