@@ -34,12 +34,12 @@ order by Date desc
 
 SELECT 
     Date,
-    `1 jour`,
-    `1 semaine`,
-    `1 mois`,
-    `3 mois`,
-    `6 mois`,
-    `12 mois` 
+    `1 jour` as jour_1,
+    `1 semaine` as semaine_1,
+    `1 mois` as mois_1,
+    `3 mois` as mois_3,
+    `6 mois` as mois_6,
+    `12 mois` as mois_12
 from euribor_ester_sans_doublons
 where rn = 1
 order by Date desc
